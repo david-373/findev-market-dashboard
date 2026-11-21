@@ -1,1 +1,60 @@
 /* You can add global styles to this file, and also import other style files */
+/* =========================================
+   FinDev Design System
+   Global color tokens
+   ========================================= */
+
+:root {
+    /* Primitive palette */
+
+    --palette-navy-950: #0b1220;
+    --palette-navy-900: #111b2e;
+
+    --palette-slate-100: #e8eef7;
+    --palette-slate-400: #94a3b8;
+    --palette-slate-700: #334155;
+
+    --palette-blue-400: #60a5fa;
+    --palette-blue-500: #3b82f6;
+
+    --palette-green-400: #34d399;
+    --palette-red-400: #fb7185;
+    --palette-yellow-400: #fbbf24;
+
+    /* Semantic colors */
+
+    --color-background: var(--palette-navy-950);
+    --color-surface: var(--palette-navy-900);
+
+    --color-text-primary: var(--palette-slate-100);
+    --color-text-secondary: var(--palette-slate-400);
+
+    --color-border: var(--palette-slate-700);
+
+    --color-accent: var(--palette-blue-400);
+    --color-accent-hover: var(--palette-blue-500);
+
+    --color-success: var(--palette-green-400);
+    --color-error: var(--palette-red-400);
+    --color-warning: var(--palette-yellow-400);
+
+    color-scheme: dark;
+}
+
+/* Global application styles */
+
+body {
+    margin: 0;
+    min-height: 100vh;
+
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        'Segoe UI',
+        sans-serif;
+}
