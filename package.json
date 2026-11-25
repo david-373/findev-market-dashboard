@@ -4,6 +4,8 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
+    "build:wasm": "sh scripts/build-wasm.sh",
+    "prebuild": "npm run build:wasm",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "npm run test:angular && npm run test:worker",
