@@ -80,10 +80,6 @@ button {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-
-    transition:
-        background-color 150ms ease,
-        border-color 150ms ease;
 }
 
 button:hover:not(:disabled) {
@@ -131,8 +127,6 @@ button:focus-visible {
 }
 
 @media (prefers-reduced-motion: reduce) {
-
-    button,
     input[type='number'] {
         transition: none;
     }
