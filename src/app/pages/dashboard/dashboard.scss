@@ -1,0 +1,79 @@
+.market-table-container {
+    width: 100%;
+    overflow-x: auto;
+
+    border: 1px solid #263449;
+    border-radius: 12px;
+    background: #101b2e;
+}
+
+.market-table {
+    width: 100%;
+    min-width: 760px;
+    border-collapse: collapse;
+
+    font-size: 14px;
+    color: #e2e8f0;
+
+    th,
+    td {
+        padding: 15px 18px;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    // Instruments are identifiers, not numeric values.
+    th:first-child,
+    td:first-child {
+        text-align: left;
+    }
+
+    thead {
+        background: #17243a;
+
+        th {
+            color: #94a3b8;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+    }
+
+    tbody {
+        tr {
+            border-top: 1px solid #263449;
+            transition: background-color 150ms ease;
+
+            &:hover {
+                background: #1b2b43;
+            }
+        }
+
+        td {
+            font-variant-numeric: tabular-nums;
+        }
+
+        td:first-child {
+            color: #93c5fd;
+            font-weight: 600;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .market-table {
+        font-size: 13px;
+
+        th,
+        td {
+            padding: 12px 14px;
+        }
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .market-table tbody tr {
+        transition: none;
+    }
+}

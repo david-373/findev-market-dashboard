@@ -1,1 +1,83 @@
-<p>dashboard works!</p>
+@let state = producer.state();
+
+<section class="dashboard">
+    <h1>Market Dashboard</h1>
+
+    <button type="button" (click)="start()" [disabled]="
+      state.status !== 'idle' &&
+      state.status !== 'error'
+    ">
+        Start Market Feed
+    </button>
+
+    <button type="button" (click)="pause()" [disabled]="state.status !== 'running'">
+        Pause
+    </button>
+
+    <button type="button" (click)="resume()" [disabled]="state.status !== 'paused'">
+        Resume
+    </button>
+
+    @if (state.instruments.size > 0) {
+    <h2>Market Metrics</h2>
+    <div class="market-table-container">
+
+        <table class="market-table">
+            <thead>
+                <tr>
+                    <th>Instrument</th>
+                    <th>Last Price</th>
+                    <th>Spread</th>
+                    <th>Volume</th>
+                    <th>VWAP</th>
+                    <th>Imbalance</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @for (metric of state.instruments.values(); track metric.instrument) {
+                <tr>
+                    <td>{{ metric.instrument }}</td>
+
+                    <td>
+                        @if (metric.lastPriceCents !== null) {
+                        {{ metric.lastPriceCents / 100 | currency:'USD':'symbol':'1.2-2' }}
+                        } @else {
+                        —
+                        }
+                    </td>
+
+                    <td>
+                        @if (metric.spreadCents !== null) {
+                        {{ metric.spreadCents / 100 | currency:'USD':'symbol':'1.2-2' }}
+                        } @else {
+                        —
+                        }
+                    </td>
+
+                    <td>
+                        {{ metric.volume | number:'1.0-0' }}
+                    </td>
+
+                    <td>
+                        @if (metric.vwapCents !== null) {
+                        {{ metric.vwapCents / 100 | currency:'USD':'symbol':'1.2-2' }}
+                        } @else {
+                        —
+                        }
+                    </td>
+
+                    <td>
+                        @if (metric.imbalance !== null) {
+                        {{ metric.imbalance > 0 ? '+' : '' }}{{ metric.imbalance | number:'1.2-2' }}
+                        } @else {
+                        —
+                        }
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    }
+</section>

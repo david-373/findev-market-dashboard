@@ -1,1 +1,44 @@
-<p>settings works!</p>
+@let applied = producer.state().settings;
+
+<section class="settings">
+    <h1>Producer Settings</h1>
+
+    <p>
+        Changes take effect only after Apply.
+        Applying settings starts a new run and resets market metrics.
+    </p>
+
+    <form [formRoot]="settingsForm">
+        @for (item of numericFields; track item.id) {
+        @let field = item.field();
+
+        <div class="form-field">
+            <label [for]="item.id">
+                {{ item.label }}
+            </label>
+
+            <input [id]="item.id" type="number" step="1" [formField]="item.field" />
+
+            @if (field.touched() && field.invalid()) {
+            <p class="field-error">
+                {{ field.errors()[0]?.message ?? 'Invalid value.' }}
+            </p>
+            }
+        </div>
+        }
+
+        <button type="submit" [disabled]="
+            !hasChanges() ||
+            !settingsForm().valid() ||
+            settingsForm().submitting()
+        ">
+            Apply Settings
+        </button>
+    </form>
+
+    <h2>Currently Applied</h2>
+
+    <p>Instruments: {{ applied.instrumentCount }}</p>
+    <p>Updates per Batch: {{ applied.updatesPerBatch }}</p>
+    <p>Batch Interval: {{ applied.batchIntervalMs }} ms</p>
+</section>

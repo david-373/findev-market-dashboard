@@ -18,7 +18,15 @@ describe('createNextProducerState', () => {
         expect(next.status).toBe('initializing');
         expect(next.settings).toEqual(settings);
         expect(next.settings).not.toBe(settings);
-        expect(next.instruments.size).toBe(0);
+        expect([...next.instruments.keys()]).toEqual(['ASSET_001', 'ASSET_002', 'ASSET_003']);
+        expect(next.instruments.get('ASSET_003')).toEqual({
+            instrument: 'ASSET_003',
+            lastPriceCents: null,
+            spreadCents: null,
+            volume: 0,
+            vwapCents: null,
+            imbalance: null,
+        });
         expect(next.error).toBeNull();
     });
 

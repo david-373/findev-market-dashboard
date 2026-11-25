@@ -2,6 +2,7 @@ import type { ProducerState } from '../models/producer-state.model';
 import type { ProducerSettings } from '../models/producer-settings.model';
 
 import { isValidProducerSettings } from '../settings/validate-producer-settings';
+import { createInitialProducerMetrics } from './create-initial-producer-metrics';
 
 export function createNextProducerState(
     previousRunId: number,
@@ -15,7 +16,7 @@ export function createNextProducerState(
         runId: previousRunId + 1,
         status: 'initializing',
         settings: { ...settings },
-        instruments: new Map(),
+        instruments: createInitialProducerMetrics(settings.instrumentCount),
         error: null,
     };
 }

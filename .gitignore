@@ -42,3 +42,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Rust / WebAssembly build artifacts
+/wasm/market-generator/target/
+/wasm/market-generator/pkg/

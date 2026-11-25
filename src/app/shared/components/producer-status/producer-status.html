@@ -1,0 +1,50 @@
+@let currentStatus = status();
+
+<section
+  class="producer-status"
+  [class.is-running]="currentStatus === 'running'"
+  [class.is-paused]="currentStatus === 'paused'"
+  [class.is-error]="currentStatus === 'error'"
+>
+  <span class="status-indicator"></span>
+
+  <div class="status-content">
+    <strong>Market Producer</strong>
+
+    <span class="status-label">
+      @switch (currentStatus) {
+        @case ('idle') {
+          Not Started
+        }
+
+        @case ('initializing') {
+          Initializing...
+        }
+
+        @case ('running') {
+          Live
+        }
+
+        @case ('paused') {
+          Paused
+        }
+
+        @case ('error') {
+          Error
+        }
+      }
+    </span>
+  </div>
+
+  @if (runId() > 0) {
+    <span class="run-id">
+      Run #{{ runId() }}
+    </span>
+  }
+
+  @if (error(); as message) {
+    <p class="status-error">
+      {{ message }}
+    </p>
+  }
+</section>

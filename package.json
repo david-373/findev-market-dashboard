@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "npm run test:angular && npm run test:worker",
+    "test:angular": "ng test --watch=false",
+    "test:worker": "vitest run src/app/core/workers/market.worker.spec.ts"
   },
   "private": true,
   "packageManager": "npm@11.19.1",
